@@ -44,7 +44,7 @@ app.get('/hell', function(req, res) {
     res.send(req.query);}
 );
 
-app.listen(1337, function () {
+app.listen(process.env.PORT || 1337, function () {
   console.log('Example app listening on port 3000!');
 });
 
