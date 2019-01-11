@@ -1,127 +1,60 @@
-var express = require('express')
-var app = express()
+var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 
-app.get('/', function(req, res) {
-    res.send('Send root!')
+var routes = require('./routes/index');
+var users = require('./routes/users');
+
+var app = express();
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', routes);
+app.use('/users', users);
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
-app.get('/about', function(req, res) {
-    res.send('Send about page!')
-});
+// error handlers
 
-app.get('/about/about-me', function(req, res) {
-    res.send('Send about-me page!')
-});
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
+    });
+  });
+}
 
-app.get('/blog', function(req, res) {
-  res.json({
-    text: 'Send blog page!'
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
   });
 });
 
-app.get('/api/users/:number', function(req, res) {
-    var a = {
-        "id": 1,
-        "name": "Joe",
-        "age": 18
-    };
-    var b = {
-        "id": 2,
-        "name": "John",
-        "age": 22
-    };
 
-    if (req.params.number == 1) {
-        res.json(a);
-    } else if (req.params.number == 2) {
-        res.json(b);
-    } else {
-        res.send('NOT FOUND');
-    }
-});
-
-app.get('/hell', function(req, res) {
-    res.send(req.query);}
-);
-
-app.listen(process.env.PORT || 1337, function () {
-  console.log('Example app listening on port 3000!');
-});
-
-// ctrl + c to stop
-process.on('SIGINT', function() {
-    process.exit();
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var express = require('express')
-// var app = express()
-//
-// var requestTime = function (req, res, next) {
-//   req.requestTime = Date.now()
-//   next()
-// }
-//
-// app.use(requestTime)
-//
-// app.get('/user/:id', function(req, res) {
-//   res.send('user ' + req.params.id);
-// });
-//
-// app.listen(3000)
-
-
-
-
-// var express = require('express');
-// var app = express();
-//
-// // GET method route
-// app.get('/', function (req, res) {
-//   res.send('GET request to the homepage');
-// });
-//
-// // POST method route
-// app.post('/', function (req, res) {
-//   res.send('POST request to the homepage');
-// });
-//
-// /*
-// There is a special routing method, app.all(),
-// used to load middleware functions at a path for all HTTP request methods.
-// For example, the following handler is executed for requests to the route “/secret”
-// whether using GET, POST, PUT, DELETE, or any other HTTP request method supported in the http module.
-// */
-// app.all('/secret', function (req, res, next) {
-//   res.send('Accessing the secret section ...');
-//   console.log('Accessing the secret section ...');
-//   nextFun(); // pass control to the next handler
-// });
-//
-// function nextFun(){
-//   console.log('next ...');
-// };
-//
-// app.listen(3000, function () {
-//   console.log('Example app listening on port 3000!');
-// });
-//
-//
-// // ctrl + c to stop
-// process.on('SIGINT', function() {
-//     process.exit();
-// });
+module.exports = app;
