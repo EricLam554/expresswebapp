@@ -55,7 +55,7 @@ function connectDB(){
   var mysql = require('mysql')
   var connection = mysql.createConnection({
     host     : 'https://expresswebappsserver.database.windows.net::1433',
-    user     : 'ericlam01',
+    user     : 'ericlam01@expresswebappsserver.database.windows.net',
     password : 'eE852456',
     database : 'expresswebapp'
   });
@@ -65,7 +65,7 @@ function connectDB(){
   connection.query('SELECT 1 + 1 AS solution', function (err, rows, fields) {
     if (err) throw err
 
-    return rows[0].solution;
+    return rows[0].solution + "!!!";
   })
 
   connection.end()
