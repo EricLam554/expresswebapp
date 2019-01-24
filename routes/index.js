@@ -51,14 +51,22 @@ router.get('/DB', function(req, res) {
     res.send(returnStr);}
 );
 
+Data Source=tcp:expresswebappsserver.database.windows.net,1433;Initial Catalog=expresswebapp;
+User Id=ericlam01@expresswebappsserver.database.windows.net;Password=eE852456;
+
 function connectDB(){
   var mysql = require('mysql')
   var returnDate;
   var connection = mysql.createConnection({
-    host     : 'https://expresswebappsserver.database.windows.net::1433',
-    user     : 'ericlam01@expresswebappsserver.database.windows.net',
-    password : 'eE852456',
-    database : 'localdb'
+
+    userName: 'ericlam01@expresswebappsserver.database.windows.net', // update me
+    password: 'eE852456', // update me
+    server: 'expresswebappsserver.database.windows.net', // update me
+    options:
+        {
+            database: 'localdb', //update me
+            encrypt: true
+        }
   });
 
   connection.connect()
