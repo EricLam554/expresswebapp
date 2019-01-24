@@ -46,4 +46,29 @@ router.get('/hell', function(req, res) {
     res.send(req.query);}
 );
 
+router.get('/DB', function(req, res) {
+    var returnStr = connectDB();
+    res.send(returnStr);}
+);
+
+function connectDB(){
+  var mysql = require('mysql')
+  var connection = mysql.createConnection({
+    host     : 'https://expresswebappsserver.database.windows.net::1433',
+    user     : 'ericlam01',
+    password : 'eE852456',
+    database : 'expresswebapp'
+  });
+
+  connection.connect()
+
+  connection.query('SELECT 1 + 1 AS solution', function (err, rows, fields) {
+    if (err) throw err
+
+    return rows[0].solution;
+  })
+
+  connection.end()
+}
+
 module.exports = router;
