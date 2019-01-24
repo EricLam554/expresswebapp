@@ -65,10 +65,12 @@ function connectDB(){
   connection.query('SELECT * FROM User', function (err, rows, fields) {
     if (err) throw err
 
-    return rows[0].solution + "!!!";
+    var returnDate = rows[0].solution + "!!!";
   })
 
   connection.end()
+
+  return returnDate;
 }
 
 module.exports = router;
