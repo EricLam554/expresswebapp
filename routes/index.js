@@ -48,7 +48,7 @@ router.get('/hell', function(req, res) {
 
 router.get('/DB', function(req, res) {
     var returnStr = connectDB();
-    res.send("--------" + returnStr + "--------");}
+    res.send('--------' + returnStr + '--------');}
 );
 
 function connectDB(){
@@ -66,7 +66,7 @@ function connectDB(){
   connection.query('SELECT * FROM User', function (err, rows, fields) {
     if (err) throw err
 
-    returnDate = rows[0].solution + "!!!";
+    returnDate = rows[0].solution + '!!!';
   })
 
   connection.end()
