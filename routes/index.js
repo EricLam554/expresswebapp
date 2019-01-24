@@ -53,6 +53,7 @@ router.get('/DB', function(req, res) {
 
 function connectDB(){
   var mysql = require('mysql')
+  var returnDate;
   var connection = mysql.createConnection({
     host     : 'https://expresswebappsserver.database.windows.net::1433',
     user     : 'ericlam01@expresswebappsserver.database.windows.net',
@@ -65,7 +66,7 @@ function connectDB(){
   connection.query('SELECT * FROM User', function (err, rows, fields) {
     if (err) throw err
 
-    var returnDate = rows[0].solution + "!!!";
+    returnDate = rows[0].solution + "!!!";
   })
 
   connection.end()
