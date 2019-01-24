@@ -48,7 +48,7 @@ router.get('/hell', function(req, res) {
 
 router.get('/DB', function(req, res) {
     var returnStr = connectDB();
-    res.send(returnStr);}
+    res.send("--------" + returnStr + "--------");}
 );
 
 function connectDB(){
