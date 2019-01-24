@@ -62,7 +62,7 @@ function connectDB(){
 
   connection.connect()
 
-  connection.query('SELECT 1 + 1 AS solution', function (err, rows, fields) {
+  connection.query('SELECT * FROM User', function (err, rows, fields) {
     if (err) throw err
 
     return rows[0].solution + "!!!";
