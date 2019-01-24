@@ -57,7 +57,7 @@ function connectDB(){
     host     : 'https://expresswebappsserver.database.windows.net::1433',
     user     : 'ericlam01@expresswebappsserver.database.windows.net',
     password : 'eE852456',
-    database : 'expresswebapp'
+    database : 'localdb'
   });
 
   connection.connect()
