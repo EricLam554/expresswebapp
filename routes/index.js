@@ -66,7 +66,7 @@ function connectDB(){
   connection.query('SELECT * FROM User', function (err, rows, fields) {
     if (err) throw err
 
-    returnDate = rows[0].solution + '!!!!' + rows;
+    returnDate = rows[0].solution + '!!!!' + rows[0];
   })
 
   connection.end()
