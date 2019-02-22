@@ -55,7 +55,7 @@ function connectDB(){
   var mysql = require('mysql')
   var returnDate;
   var connection = mysql.createConnection({
-    host     : 'expresswebappsserver.database.windows.net::1433',
+    host     : 'expresswebappsserver.database.windows.net::54028',
     user     : 'ericlam01@expresswebappsserver.database.windows.net',
     password : 'eE852456',
     database : 'localdb'
